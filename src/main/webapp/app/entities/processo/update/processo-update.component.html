@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      @if(isEdit){
+        <h2 id="jhi-processo-heading" data-cy="ProcessoCreateUpdateHeading">Editar processo</h2>
+      } @else{
+        <h2 id="jhi-processo-heading" data-cy="ProcessoCreateUpdateHeading">Cadastrar novo processo</h2>
+      }
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+        <div class="mb-3">
+          <label class="form-label" for="field_npu">Npu</label>
+          <input type="text" class="form-control" name="npu" id="field_npu" data-cy="npu" formControlName="npu" mask="0000000-00.0000.0.00.0000"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_uf">UF</label>
+          <select class="form-select" id="field_uf" data-cy="uf" (change)="onUfChangeEvent($event)" formControlName="uf">
+            <option value="">Selecione</option>
+            @for (state of states; track state) {
+              <option [value]="state.nome">
+                {{ state.nome }}
+              </option>
+            }
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_municipio">Município</label>
+          <select class="form-select" id="field_municipio" data-cy="municipio" formControlName="municipio">
+            <option value="">Selecione</option>
+            @for (mun of municipalities; track mun) {
+              <option [value]="mun.nome">
+                {{ mun.nome }}
+              </option>
+            }
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Documento:</label>
+          @if(editForm.get('documento')?.value) {
+            <div class="d-flex direction-column">
+              <button 
+                type="button" 
+                class="btn btn-link"
+                (click)="openFile(editForm.get('documento')?.value || '', 'application/pdf')">
+                <fa-icon icon="file-pdf" size="2x"></fa-icon>
+              </button>
+              <button 
+                type="button"
+                class="btn btn-link btn-sm text-danger ms-2"
+                (click)="removeFile()">
+                Remover
+              </button>
+            </div>
+          } @else {
+            <input 
+              type="file" 
+              class="form-control" 
+              id="field_documento"
+              (change)="setFileData($event, 'documento', false)" />
+          }
+        </div>
+      </div>
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

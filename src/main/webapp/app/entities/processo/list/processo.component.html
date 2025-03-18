@@ -1,0 +1,104 @@
+<div>
+  <div id="page-heading" data-cy="ProcessoHeading">
+    <h2>Processos</h2>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <span class="view-legend"></span>
+        <p class="m-0">Processos visualizados</p>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+          <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+          <span>Atualizar lista</span>
+        </button>
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-processo"
+          [routerLink]="['/processos/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span>Criar novo Processo</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (processos().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Nenhum Processo encontrado</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-hover" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort  [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="npu">
+              <div class="d-flex">
+                <span>Npu</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dataCadastro">
+              <div class="d-flex">
+                <span>Data Cadastro</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="uf">
+              <div class="d-flex">
+                <span>Uf</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (processo of processos(); track trackId(processo)) {
+            <tr [class.visualized-row]="processo.dataVisualizacao" data-cy="entityTable">
+              <td>{{ processo.npu | npu }}</td>
+              <td>{{ processo.dataCadastro | formatMediumDate }}</td>
+              <td>{{ processo.uf }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-info btn-sm" (click)="visualizeAndRedirect(processo)" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                  </button>
+
+                  <a (click)="visualizeAndRedirect(processo)" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                  </a>
+
+                  <button type="submit" (click)="delete(processo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="trash"></fa-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (processos().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

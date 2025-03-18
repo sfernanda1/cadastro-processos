@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20250315181859"
+  },
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "npu",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "dataCadastro",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dataVisualizacao",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "municipio",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documento",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Processo",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

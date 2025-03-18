@@ -1,0 +1,28 @@
+<div class="container-fluid home-section">
+  <div class="row align-items-center">
+    <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0 text-content-home">
+      <h1 class="display-4 fw-bold">Cadastro de processos</h1>
+      <p class="lead mb-4 mt-4 mr-4" >
+        Aplicação destinada para cadastro de processos, projetada para oferecer uma plataforma robusta e intuitiva para o registro e gerenciamento e  dos processos. </p>
+      <button class="btn btn-primary btn-lg mt-3" (click)="navigateButtonHome()">
+        @if (account() !== null) {
+          Acessar Processos
+        } @else{
+          Fazer login
+        }
+      </button>
+    </div>
+
+    <div class="col-lg-6 position-relative d-flex justify-content-center">
+      <div class="blue-circle"></div>
+
+      <div class="orange-circle d-flex align-items-center justify-content-center">
+        <img
+          src="content/images/healthcare-laptop-woman.png"
+          alt="Mulher no laptop"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</div>
