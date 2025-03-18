@@ -1,5 +1,5 @@
 ## 💻 Desafio Técnico - Cadastro de Processos
-Este projeto foi desenvolvido como um desafio técnico, e reune backend (Java + Spring Boot) e frontend (Angular) em uma aplicação de cadastro de processos. A seguir, explico como executar o sistema e apresento algumas telas.
+Este projeto foi desenvolvido como um desafio técnico, e reúne backend (Java + Spring Boot) e frontend (Angular) em uma aplicação de cadastro de processos. A seguir, explico como executar o sistema e apresento algumas telas.
 
 ### Descrição Geral
 Este sistema tem como objetivo gerenciar processos, oferecendo funcionalidades para criação, edição, listagem e exclusão de cada processo. Foi criado com JHipster e tanto o backend (Spring Boot) quanto o frontend (Angular) são iniciados simultaneamente ao rodar ./mvnw, de modo que:
