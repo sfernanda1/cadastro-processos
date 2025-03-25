@@ -1,7 +1,7 @@
-<nav data-cy="navbar" class="navbar navbar-light navbar-expand-md bg-light">
+<nav data-cy="navbar" class="navbar navbar-expand-md bg-light">
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
-      <img src="content/images/logo-processos.png" alt="Logo" >
+      <img src="content/images/logo-processos.png" alt="Logo" />
       <span class="navbar-title">Cadastro de Processos</span>
     </a>
     <a
@@ -71,13 +71,12 @@
                 <span>Gerenciamento de usuário</span>
               </a>
             </li>
-              <li>
-                <a class="dropdown-item" routerLink="/admin/docs" routerLinkActive="active" (click)="collapseNavbar()">
-                  <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
-                  <span>API</span>
-                </a>
-              </li>
-            
+            <li>
+              <a class="dropdown-item" routerLink="/admin/docs" routerLinkActive="active" (click)="collapseNavbar()">
+                <fa-icon icon="book" [fixedWidth]="true"></fa-icon>
+                <span>API</span>
+              </a>
+            </li>
           </ul>
         </li>
         <li

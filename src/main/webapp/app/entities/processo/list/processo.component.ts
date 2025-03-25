@@ -139,30 +139,30 @@ export class ProcessoComponent implements OnInit {
   }
 
   visualizeAndRedirect(processo: IProcesso, isEdit?: boolean): void {
-    if(!processo.dataVisualizacao){
+    if (!processo.dataVisualizacao) {
       const patchData = {
         id: processo.id,
         dataVisualizacao: dayjs(new Date()),
       };
-  
+
       this.processoService.partialUpdate(patchData).subscribe({
         next: () => {
-          if(isEdit){
-            this.router.navigate(['/edit', processo.id, 'edit']);
-          } else{
+          if (isEdit) {
+            this.router.navigate(['/processos', processo.id, 'edit']);
+          } else {
             this.router.navigate(['/processos', processo.id, 'view']);
-          }       
+          }
         },
         error: err => {
           console.error('Erro ao atualizar data de visualização:', err);
         },
       });
     } else {
-      if(isEdit){
-        this.router.navigate(['/edit', processo.id, 'edit']);
-      } else{
+      if (isEdit) {
+        this.router.navigate(['/processos', processo.id, 'edit']);
+      } else {
         this.router.navigate(['/processos', processo.id, 'view']);
-      }     
+      }
     }
   }
 }

@@ -1,10 +1,43 @@
 .table-hover > tbody > tr.visualized-row > td {
-    background-color: #a9eab9!important;
-  }
-  
-.view-legend{
-    background-color: #a9eab9 !important;
-    height: 15px;
-    width: 15px;
-    margin-right: 5px;
+  background-color: #f5f8f5 !important;
+}
+
+.view-legend {
+  background-color: #f5f8f5 !important;
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+}
+
+#no-result {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon {
+  color: #18bc9c;
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-icon:hover {
+  color: darken(#18bc9c, 10%);
+}
+
+.btn-secondary {
+  background-color: #fff !important;
+  color: #18bc9c !important;
+  border-color: #18bc9c !important;
+}
+
+.processo-container {
+  padding: 1rem;
 }

@@ -1,4 +1,4 @@
-<div>
+<div class="card processo-container">
   <div id="page-heading" data-cy="ProcessoHeading">
     <h2>Processos</h2>
     <div class="d-flex justify-content-between">
@@ -7,14 +7,14 @@
         <p class="m-0">Processos visualizados</p>
       </div>
       <div class="d-flex justify-content-end">
-        <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <button class="btn btn-primary me-2" (click)="load()" [disabled]="isLoading">
           <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
           <span>Atualizar lista</span>
         </button>
         <button
           id="jh-create-entity"
           data-cy="entityCreateButton"
-          class="btn btn-primary jh-create-entity create-processo"
+          class="btn btn-secondary jh-create-entity create-processo"
           [routerLink]="['/processos/new']"
         >
           <fa-icon icon="plus"></fa-icon>
@@ -28,15 +28,16 @@
 
   <jhi-alert></jhi-alert>
 
-  @if (processos().length === 0) {
-    <div class="alert alert-warning" id="no-result">
-      <span>Nenhum Processo encontrado</span>
+  @if (processos().length === 0 && !isLoading) {
+    <div id="no-result">
+      <p>Nenhum Processo encontrado</p>
+      <img src="content/images/clear-search.svg" alt="Icone lupa" class="img-fluid" />
     </div>
   } @else {
     <div class="table-responsive table-entities" id="entities">
       <table class="table table-hover" aria-describedby="page-heading">
         <thead>
-          <tr jhiSort  [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
             <th scope="col" jhiSortBy="npu">
               <div class="d-flex">
                 <span>Npu</span>
@@ -67,15 +68,15 @@
               <td>{{ processo.uf }}</td>
               <td class="text-end">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-info btn-sm" (click)="visualizeAndRedirect(processo)" data-cy="entityDetailsButton">
+                  <button type="button" class="btn-icon" (click)="visualizeAndRedirect(processo)" data-cy="entityDetailsButton">
                     <fa-icon icon="eye"></fa-icon>
                   </button>
 
-                  <a (click)="visualizeAndRedirect(processo)" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                  <button type="button" class="btn-icon" (click)="visualizeAndRedirect(processo, true)" data-cy="entityEditButton">
                     <fa-icon icon="pencil-alt"></fa-icon>
-                  </a>
+                  </button>
 
-                  <button type="submit" (click)="delete(processo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                  <button type="button" class="btn-icon" (click)="delete(processo)" data-cy="entityDeleteButton">
                     <fa-icon icon="trash"></fa-icon>
                   </button>
                 </div>

@@ -6,10 +6,11 @@ import SharedModule from 'app/shared/shared.module';
 import { ITEM_DELETED_EVENT } from 'app/config/navigation.constants';
 import { IProcesso } from '../processo.model';
 import { ProcessoService } from '../service/processo.service';
+import { NpuPipe } from 'app/shared/processos/npu.pipe';
 
 @Component({
   templateUrl: './processo-delete-dialog.component.html',
-  imports: [SharedModule, FormsModule],
+  imports: [SharedModule, FormsModule, NpuPipe],
 })
 export class ProcessoDeleteDialogComponent {
   processo?: IProcesso;
